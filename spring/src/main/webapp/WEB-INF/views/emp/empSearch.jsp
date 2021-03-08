@@ -28,9 +28,9 @@ $(function(){
 <table>
 <c:forEach items="${list }" var="emp">
 <tr>
-	<td> ${emp.employee_id }</td>
+	<td>${emp.employee_id }</td>
 	<td>${emp.first_name}</td>
-	<td> ${emp.department_id }</td>
+	<td>${emp.department_id }</td>
 	<td><button type="button" class="btnSelect">선택</button></td>
 </tr>
 </c:forEach>

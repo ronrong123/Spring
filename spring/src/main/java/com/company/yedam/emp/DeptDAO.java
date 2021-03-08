@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Component;
-@Component
+import org.springframework.stereotype.Repository;
+@Repository 
 public class DeptDAO {
 	Connection conn;
 	PreparedStatement psmt;

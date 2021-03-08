@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -19,10 +21,26 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-	
+	</beans:bean>	
 	<context:component-scan base-package="com.company.yedam" />
 	
+	<aop:aspectj-autoproxy />
+	<!-- @ 기반으로 설정 -->
 	
-	
+<!-- 
+	<beans:bean id="logAdvice" class="com.company.yedam.common.LogAdvice" />
+	<beans:bean id="afterAdvice" class="com.company.yedam.common.AfterAdvice" />
+	<aop:config>
+		<aop:pointcut expression="execution(* com.company.yedam..*Impl.*(..))" id="allpointcut"/>
+		(*(리턴타입:모두) com.company.yedam..(패키지경로:yedam에있는 패키지)*Impl(클래스명:Impl로끝나는 모든클래스).*(..)(메소드명 및 매개변수:모두)) 
+		..은 뭐가 와도 관계X
+		<aop:aspect ref="afterAdvice">
+			<aop:after-returning method="agferLog" pointcut-ref="allpointcut" returning ="returnObj"/>
+			after-returning: 성공하면 실행
+		</aop:aspect>
+		<aop:aspect ref="logAdvice">
+			<aop:before method="printLog" pointcut-ref="allpointcut" />
+		</aop:aspect>
+	</aop:config> -->
+		
 </beans:beans>
